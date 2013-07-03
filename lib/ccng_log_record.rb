@@ -14,6 +14,6 @@ class CcngLogRecord
   end
 
   def request_guid
-    @record.fetch('data').fetch('request_guid')
+    @record.fetch('data').fetch('request_guid', nil)
   end
 end
