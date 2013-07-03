@@ -51,4 +51,17 @@ describe Correlator do
       )
     end
   end
+
+  describe '#related' do
+    it 'returns appdirect log records in the time range of matcing records in ccng log file' do
+        correlator.related.should eq([fake_ad_record_matching])
+    end
+
+    context 'when no records in cc matches' do
+      let(:prefix) { 'never gonna match' }
+      it 'returns empty array' do
+        correlator.related.should eq([])
+      end
+    end
+  end
 end
