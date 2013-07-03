@@ -6,8 +6,15 @@ class CcngLogfile
   end
 
   def records
-    @io.lines.map do |line|
-      CcngLogRecord.new(line)
-    end
+    _records(@io.lines)
+  end
+
+  def records_matching(prefix)
+    _records(@io.lines.select {|line| line.include?(prefix)})
+  end
+
+  private
+  def _records(lines)
+    lines.map(&CcngLogRecord.method(:new))
   end
 end

@@ -32,7 +32,10 @@ describe Correlator do
   let(:fake_ccng_logfile) do
     double(
       'ccng logfile',
-      records: cc_log_records,
+      records_matching: [
+        fake_cc_record_matching,
+        fake_cc_record_matching2,
+      ]
     )
   end
   let(:fake_ad_logfile) do
@@ -48,26 +51,18 @@ describe Correlator do
 
   describe '#matching' do
     it 'returns all ccng log records matching the request guid prefix' do
+      fake_ccng_logfile.stub(
+        records_matching: [
+          fake_cc_record_matching,
+          fake_cc_record_matching2,
+        ]
+      )
       correlator.matching.should eq(
         [
           fake_cc_record_matching,
           fake_cc_record_matching2,
         ]
       )
-    end
-
-    context 'with some lines not containing request_guid' do
-      before do
-        fake_ccng_logfile.stub(records: [double('cc log line about router', request_guid: nil)] + cc_log_records)
-      end
-      it 'returns all ccng log records matching the request guid prefix' do
-        correlator.matching.should eq(
-          [
-            fake_cc_record_matching,
-            fake_cc_record_matching2,
-          ]
-        )
-      end
     end
   end
 
@@ -77,8 +72,8 @@ describe Correlator do
     end
 
     context 'when no records in cc matches' do
-      let(:prefix) { 'never gonna match' }
       it 'returns empty array' do
+        fake_ccng_logfile.stub(:records_matching).with(prefix).and_return([])
         correlator.related.should eq([])
       end
     end
