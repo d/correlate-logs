@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+request_guid = ARGV.fetch(0)
+ccng_log_path = ARGV.fetch(1)
+ad_log_path = ARGV.fetch(2)
+
+puts File.read(ad_log_path)
+puts File.read(ccng_log_path)

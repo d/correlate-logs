@@ -1,0 +1,3 @@
+10.10.32.10 --  [2013-07-03 04:37:55.082822] VCAP::Services::OauthJsonHttpClient - pid=1502 tid=dd3d fid=1d04  DEBUG -- VCAP::Services::OauthJsonHttpClient#DELETE("https://cloudfoundry.appdirect.com/api/custom/cloudfoundry/v1/services/d2d6e29b-7a4d-4be3-aa05-77923c64928d") succeeded with status 204, body  (truncated at 50chars)
+10.10.32.10 --  [2013-07-03 04:37:55.083539] appdirect_gateway - pid=1502 tid=dd3d fid=1d04   INFO -- Unprovision success for order id: d2d6e29b-7a4d-4be3-aa05-77923c64928d
+10.10.32.10 --  [2013-07-03 04:37:55.083951] appdirect_gateway - pid=1502 tid=dd3d fid=1d04  DEBUG -- Reply status:200, headers:{"Content-Type"=>"application/json"}, body:{}
