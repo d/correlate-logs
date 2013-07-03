@@ -4,6 +4,7 @@ gem 'yajl-ruby'
 
 group :development do
   gem 'guard-rspec'
+  gem 'pry-debugger'
 end
 
 group :test do
