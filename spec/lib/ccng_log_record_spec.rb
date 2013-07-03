@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ccng_logfile'
+require 'ccng_log_record'
 
 describe CcngLogRecord do
   subject { described_class.new(line) }
