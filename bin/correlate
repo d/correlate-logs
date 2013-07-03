@@ -4,5 +4,14 @@ request_guid = ARGV.fetch(0)
 ccng_log_path = ARGV.fetch(1)
 ad_log_path = ARGV.fetch(2)
 
-puts File.read(ad_log_path)
-puts File.read(ccng_log_path)
+$:.unshift(File.expand_path('../../lib', __FILE__))
+require 'correlator'
+require 'ccng_logfile'
+require 'appdirect_logfile'
+
+correlator = Correlator.new(
+  request_guid,
+  CcngLogfile.new(File.open(ccng_log_path)),
+  AppdirectLogfile.new(File.open(ad_log_path)),
+)
+puts correlator.related.map(&:line)

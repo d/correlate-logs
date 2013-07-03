@@ -21,14 +21,13 @@ describe 'Correlating CCNG Request-ID with Appdirect Gateway log' do
     end
   end
 
-  let(:request_guid) { 'e3141100' }
+  let(:request_guid) { 'dfe3f642' }
 
   it 'filters the appdirect gateway log' do
     output = `bin/correlate #{request_guid} #{ccng_log_file.path} #{appdirect_log_file.path}`
     $?.should be_success
     output.should eq(
-      File.read(fixture('appdirect_gateway.log')) +
-      File.read(fixture('cloud_controller_ng.log'))
+      File.read(fixture('appdirect_gateway.log'))
     )
   end
 end
