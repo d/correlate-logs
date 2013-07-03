@@ -10,7 +10,7 @@ class Correlator
 
   def matching
     @matching ||= @ccng_logfile.records.select do |r|
-      r.request_guid.start_with?(@prefix)
+      r.request_guid.start_with?(@prefix) if r.request_guid
     end
   end
 
